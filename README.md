@@ -9,18 +9,16 @@ Este é um projeto base em PHP utilizando o padrão MVC, com suporte a multi-ten
 ```
 📁 base-projeto-login-pagto/
  ├── .htaccess              # Configuração de segurança e roteamento
+ ├── database.php            # Gerencia a conexão com o banco de dados
+ ├── config.php             # Definições globais do sistema
+ ├── create_database_mysql.php  # Script para criar o banco MySQL
+ ├── create_database_sqlite.php # Script para criar o banco SQLite
+ ├── env.php                # Configurações de ambiente (desenvolvimento/produção)
  ├── index.php              # Ponto de entrada principal da aplicação
  ├── README.md              # Documentação do projeto
  ├── assets/                # Arquivos estáticos (CSS, JS, imagens)
- ├── config/                # Configuração do sistema
- │   ├── config.php         # Definições globais do sistema
- │   ├── env.php            # Configurações de ambiente (desenvolvimento/produção)
  ├── controllers/           # Controladores da aplicação
  ├── core/                  # Classes base do framework
- ├── database/              # Gerenciamento de banco de dados
- │   ├── create_database_mysql.php  # Script para criar o banco MySQL
- │   ├── create_database_sqlite.php # Script para criar o banco SQLite
- │   ├── database.php       # Classe Singleton para conexão com o banco de dados
  ├── views/                 # Arquivos de visualização (front-end)
 ```
 
@@ -43,7 +41,7 @@ Para rodar este projeto, você precisará de:
 
 1. **Clone o repositório ou copie os arquivos para o seu servidor local:**
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/cwrsiqueira/base-projeto-login-pagto.git
    cd base-projeto-login-pagto
    ```
 
@@ -68,13 +66,13 @@ define("DB_DRIVER", "mysql");
 
 🔹 **Se estiver usando SQLite**, rode:
 ```sh
-php database/create_database_sqlite.php
+php create_database_sqlite.php
 ```
 Isso criará o arquivo `database.sqlite` automaticamente.
 
 🔹 **Se estiver usando MySQL**, rode:
 ```sh
-php database/create_database_mysql.php
+php create_database_mysql.php
 ```
 Isso criará o banco de dados e as tabelas necessárias no MySQL.
 
