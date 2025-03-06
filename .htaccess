@@ -1,0 +1,31 @@
+# Ativar mecanismo de reescrita
+RewriteEngine On
+
+# Impedir acesso direto a arquivos sensíveis
+<FilesMatch "(^\.|config\.php|env\.php)">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "(create_database_.*\.php)">
+    Require all denied
+</FilesMatch>
+
+<Files "database.php">
+    Require all denied
+</Files>
+
+# Bloquear acesso direto aos diretórios críticos do MVC
+RewriteRule ^(core|controllers|views)/ - [F,L]
+
+# Redirecionar todas as requisições para index.php, exceto assets e arquivos existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/assets/.*$
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Impedir listagem de diretórios
+Options -Indexes
+
+# Mensagem de erro personalizada
+ErrorDocument 403 "Acesso negado."
+ErrorDocument 404 "Página não encontrada."
