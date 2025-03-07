@@ -2,16 +2,28 @@
 <html>
 
 <head>
-	<title>Título | Página Inicial</title>
+	<title> <?= APP_NAME ?> | <?= ucfirst($viewName) ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/images/default.jpg" />
+	<link rel="icon" href="<?= BASE_URL ?>assets/images/logo.png" type="image/png">
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/style.css" />
 	<link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css">
 </head>
 
 <body>
+	<div class="container mt-3">
+		<h1>Seja bem vindo(a), <small><?= $_SESSION['user']['name'] ?></small>!</h1>
+		<hr>
+		<a href="<?= BASE_URL ?>home" class="badge badge-primary p-2 mr-1" style="font-size: medium">Home</a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-secondary p-2 mr-1" style="font-size: medium">Menu</a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-success p-2 mr-1" style="font-size: medium">Menu</a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-danger p-2 mr-1" style="font-size: medium">Menu</a>
+		<a href="<?= BASE_URL ?>subscription/plans" class="badge badge-warning p-2 mr-1" style="font-size: medium">Planos</a>
+		<a href="<?= BASE_URL ?>profile" class="badge badge-info p-2 mr-1" style="font-size: medium">Perfil</a>
+		<a href="<?= BASE_URL ?>subscription" class="badge badge-light p-2 mr-1" style="font-size: medium">Assinatura</a>
+		<a href="<?= BASE_URL ?>auth/logout" class="badge badge-dark p-2 mr-1" style="font-size: medium">Sair</a>
+	</div>
 
 
 

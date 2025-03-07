@@ -19,12 +19,17 @@ class Database
         }
         return self::$instance->pdo;
     }
+
+    public static function getConnection()
+    {
+        return self::$instance->pdo;
+    }
 }
 
-// Escolher banco de dados com base na configuração
+// Inicializando a conexão com base no driver
 require_once __DIR__ . '/config.php';
 if (DB_DRIVER === 'sqlite') {
-    $db = Database::getInstance("sqlite:" . __DIR__ . "/database.sqlite");
+    Database::getInstance("sqlite:" . __DIR__ . "/database.sqlite");
 } else {
-    $db = Database::getInstance("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+    Database::getInstance("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
 }

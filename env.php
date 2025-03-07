@@ -1,13 +1,15 @@
 <?php
+define("APP_NAME", "Projeto Base");
+
 define("ENVIRONMENT", "development"); // Altere para "production" quando for fazer deploy
 
 if (ENVIRONMENT == 'development') {
-    define("BASE_URL", "http://localhost/");
+    define("BASE_URL", "http://localhost/base-projeto-login-pagto/");
 } else {
-    define("BASE_URL", "http://meusite.com.br/");
+    define("BASE_URL", "https://meusite.com.br/");
 }
 
-define("DB_DRIVER", "sqlite"); // Altere para "mysql" se quiser usar MySQL
+define("DB_DRIVER", "mysql"); // mysql | sqlite
 
 // MySql
 define("DB_NAME", "base_projeto");

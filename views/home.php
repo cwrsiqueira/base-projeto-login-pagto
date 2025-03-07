@@ -1,1 +1,3 @@
-<h1>Página Inicial</h1>
+<div class="container mt-3">
+    Home
+</div>
