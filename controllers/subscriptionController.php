@@ -36,12 +36,14 @@ class subscriptionController extends controller
 		$dados = ["page" => "Planos"];
 		$dados['plans'] = [
 			[
+				'id' => 'planoanual',
 				'name' => 'Plano Anual',
 				'description' => 'Apenas R$ 1,99 por mês, cobrado anualmente com desconto de 2 meses.',
 				'price' => 19.90,
 				'billing_cycle' => 'Anual'
 			],
 			[
+				'id' => 'planovitalicio',
 				'name' => 'Plano Vitalício',
 				'description' => 'Pagamento único, acesso vitalício.',
 				'price' => 19.90 * 4,

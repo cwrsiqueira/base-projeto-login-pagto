@@ -20,8 +20,8 @@
 		<a href="<?= BASE_URL ?>content/second" class="badge badge-success p-2 mr-1" style="font-size: medium">Conteúdo 2 <span class="badge badge-secondary">Pago</span></a>
 		<a href="<?= BASE_URL ?>content/third" class="badge badge-danger p-2 mr-1" style="font-size: medium">Conteúdo 3 <span class="badge badge-secondary">Pago</span></a>
 		<a href="<?= BASE_URL ?>subscription/plans" class="badge badge-warning p-2 mr-1" style="font-size: medium">Planos </a>
-		<a href="<?= BASE_URL ?>profile" class="badge badge-info p-2 mr-1" style="font-size: medium">Perfil </a>
 		<a href="<?= BASE_URL ?>subscription" class="badge badge-light p-2 mr-1 border border-muted" style="font-size: medium">Assinatura </a>
+		<a href="<?= BASE_URL ?>profile" class="badge badge-info p-2 mr-1" style="font-size: medium">Perfil </a>
 		<a href="<?= BASE_URL ?>auth/logout" class="badge badge-dark p-2 mr-1" style="font-size: medium">Sair </a>
 	</div>
 
@@ -38,6 +38,9 @@
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/bootstrap.min.js"></script>
 	<script src="<?php echo BASE_URL; ?>assets/js/jquery.mask.min.js"></script>
 	<script src="<?php echo BASE_URL; ?>assets/js/script.js"></script>
+	<script>
+		var BASE_URL = "<?php echo BASE_URL; ?>";
+	</script>
 </body>
 
 </html>

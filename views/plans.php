@@ -12,7 +12,7 @@
                         <h3 class="text-success">R$ <?php echo number_format($plan['price'], 2, ',', '.'); ?></h3>
                         <small class="text-muted"><?php echo $plan['billing_cycle']; ?></small>
                         <br><br>
-                        <a href="#" class="btn btn-success">Assinar Agora</a>
+                        <a href="<?= BASE_URL ?>checkoutMercadoPago/index/<?php echo $plan['id']; ?>" class="btn btn-success">Assinar Agora</a>
                     </div>
                 </div>
             </div>
