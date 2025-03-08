@@ -26,13 +26,13 @@
             <form action="<?= BASE_URL ?>auth/login" method="POST">
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
 
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Digite a senha" aria-label="Digite a senha" aria-describedby="showPass" id="password" name="password" required>
+                        <input type="password" class="form-control" placeholder="Digite a senha" aria-label="Digite a senha" aria-describedby="showPass" id="password" name="password">
                         <div class="input-group-append">
                             <span class="input-group-text" style="cursor: pointer;" id="showPass">
                                 <i class="fa-solid fa-eye"></i>

@@ -1,17 +1,15 @@
 <?php
 class subscriptionController extends controller
 {
-	private $db;
 	private $user;
 
 	public function __construct()
 	{
-		if (!isset($_SESSION['user'])) {
+		if (!(new User)->isLogged()) {
 			header("Location: " . BASE_URL . "auth");
 			exit;
 		}
 
-		$this->db = Database::getConnection();
 		$this->user = $_SESSION['user'];
 	}
 
@@ -21,15 +19,14 @@ class subscriptionController extends controller
 
 		$tenant_id = $this->user['tenant_id'];
 
-		$sql = $this->db->prepare("SELECT * FROM subscriptions WHERE tenant_id = :tenant_id");
-		$sql->bindParam(':tenant_id', $tenant_id, PDO::PARAM_INT);
-		$sql->execute();
+		// Buscar dados da assinatura
+		$subscription = (new Subscription)->getSubscriptionByTenantId($tenant_id);
 
-		if ($sql->rowCount() <= 0) {
+		if (!$subscription) {
 			$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Nenhum assinatura encontrada.</p>";
 		}
 
-		$dados['subscription'] = $sql->fetch();
+		$dados['subscription'] = $subscription;
 
 		$this->loadTemplate('subscription', $dados);
 	}

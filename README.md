@@ -106,3 +106,14 @@ O projeto já inclui tabelas para gerenciar pagamentos e assinaturas recorrentes
 ## ❓ **Dúvidas ou melhorias?**
 
 Sinta-se à vontade para contribuir ou relatar problemas no repositório. 🚀
+
+## **Melhorias**
+- Sistema de envio de email:
+   - cadastro: confirmar email
+   - esqueci a senha
+   - vencimento da assinatura:
+      - 1 dia antes
+      - no dia
+      - todos os dias vencidos
+
+- Login com Google

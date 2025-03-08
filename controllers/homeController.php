@@ -3,7 +3,7 @@ class homeController extends controller
 {
 	public function __construct()
 	{
-		if (!isset($_SESSION['user'])) {
+		if (!(new User)->isLogged()) {
 			header("Location: " . BASE_URL . "auth");
 			exit;
 		}

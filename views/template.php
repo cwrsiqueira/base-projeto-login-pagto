@@ -15,14 +15,14 @@
 	<div class="container mt-3">
 		<h1>Seja bem vindo(a), <small><?= $_SESSION['user']['name'] ?></small>!</h1>
 		<hr>
-		<a href="<?= BASE_URL ?>home" class="badge badge-primary p-2 mr-1" style="font-size: medium">Home</a>
-		<a href="<?= BASE_URL ?>home" class="badge badge-secondary p-2 mr-1" style="font-size: medium">Menu</a>
-		<a href="<?= BASE_URL ?>home" class="badge badge-success p-2 mr-1" style="font-size: medium">Menu</a>
-		<a href="<?= BASE_URL ?>home" class="badge badge-danger p-2 mr-1" style="font-size: medium">Menu</a>
-		<a href="<?= BASE_URL ?>subscription/plans" class="badge badge-warning p-2 mr-1" style="font-size: medium">Planos</a>
-		<a href="<?= BASE_URL ?>profile" class="badge badge-info p-2 mr-1" style="font-size: medium">Perfil</a>
-		<a href="<?= BASE_URL ?>subscription" class="badge badge-light p-2 mr-1" style="font-size: medium">Assinatura</a>
-		<a href="<?= BASE_URL ?>auth/logout" class="badge badge-dark p-2 mr-1" style="font-size: medium">Sair</a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-primary p-2 mr-1" style="font-size: medium">Home </a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-secondary p-2 mr-1" style="font-size: medium">Menu <span class="badge badge-dark">Pago</span></a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-success p-2 mr-1" style="font-size: medium">Menu <span class="badge badge-secondary">Pago</span></a>
+		<a href="<?= BASE_URL ?>home" class="badge badge-danger p-2 mr-1" style="font-size: medium">Menu <span class="badge badge-secondary">Pago</span></a>
+		<a href="<?= BASE_URL ?>subscription/plans" class="badge badge-warning p-2 mr-1" style="font-size: medium">Planos </a>
+		<a href="<?= BASE_URL ?>profile" class="badge badge-info p-2 mr-1" style="font-size: medium">Perfil </a>
+		<a href="<?= BASE_URL ?>subscription" class="badge badge-light p-2 mr-1 border border-muted" style="font-size: medium">Assinatura </a>
+		<a href="<?= BASE_URL ?>auth/logout" class="badge badge-dark p-2 mr-1" style="font-size: medium">Sair </a>
 	</div>
 
 

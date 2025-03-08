@@ -3,13 +3,6 @@ require_once __DIR__ . '/../database.php';
 
 class authController extends controller
 {
-	private $db;
-
-	public function __construct()
-	{
-		$this->db = Database::getConnection(); // Obtendo a instância do banco de dados
-	}
-
 	public function index()
 	{
 		$this->loadViewInTemplate('login');
@@ -39,10 +32,7 @@ class authController extends controller
 			$role = "admin";
 
 			// Verificar se o usuário existe no banco
-			$stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
-			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-			$stmt->execute();
-			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+			$user = (new User)->getUserByEmail($email);
 
 			if ($user) {
 				$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Esse e-mail já está cadastrado!</p>";
@@ -51,11 +41,7 @@ class authController extends controller
 			}
 
 			// Cadastrar tenant no banco
-			$stmt = $this->db->prepare("INSERT INTO tenants (name, email) VALUES (:name, :email)");
-			$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-			$stmt->execute();
-			$tenant_id = $this->db->lastInsertId();
+			$tenant_id = (new Tenant)->addTenant($name, $email);
 
 			if (!$tenant_id) {
 				$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Erro ao efetuar cadastro. Tente novamente!</p>";
@@ -64,14 +50,7 @@ class authController extends controller
 			}
 
 			// Cadastrar usuário no banco
-			$stmt = $this->db->prepare("INSERT INTO users (tenant_id, name, email, password, role) VALUES (:tenant_id, :name, :email, :password, :role)");
-			$stmt->bindParam(':tenant_id', $tenant_id, PDO::PARAM_INT);
-			$stmt->bindParam(':name', $name, PDO::PARAM_STR);
-			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-			$stmt->bindParam(':password', $hashPassword, PDO::PARAM_STR);
-			$stmt->bindParam(':role', $role, PDO::PARAM_STR);
-			$stmt->execute();
-			$user_id = $this->db->lastInsertId();
+			$user_id = (new User)->addUser($tenant_id, $name, $email, $hashPassword, $role);
 
 			// Cadastrar assinatura teste 7 dias grátis
 			$plan = 'Teste 7 dias';
@@ -80,20 +59,16 @@ class authController extends controller
 			$status = 'active';
 			$renew_at = (new DateTime())->modify('+7 days')->format('Y-m-d 23:59:59');
 
-			$stmt = $this->db->prepare("INSERT INTO subscriptions SET tenant_id = :tenant_id, plan = :plan, price = :price, currency = :currency, status = :status, renew_at = :renew_at");
-			$stmt->bindParam(':tenant_id', $tenant_id, PDO::PARAM_INT);
-			$stmt->bindParam(':plan', $plan, PDO::PARAM_STR);
-			$stmt->bindParam(':price', $price, PDO::PARAM_STR);
-			$stmt->bindParam(':currency', $currency, PDO::PARAM_STR);
-			$stmt->bindParam(':status', $status, PDO::PARAM_STR);
-			$stmt->bindParam(':renew_at', $renew_at, PDO::PARAM_STR);
-			$stmt->execute();
+			$subscription = (new Subscription)->addSubscription($tenant_id, $plan, $price, $currency, $status, $renew_at);
+
+			if (!$subscription) {
+				$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Erro ao liberar o acesso de teste. Contacte o suporte. Obrigado!</p>";
+				header("Location: " . BASE_URL . "auth/signup");
+				exit;
+			}
 
 			// Buscar dados do usuário cadastrado
-			$stmt = $this->db->prepare("SELECT id as user_id, tenant_id, name, email, role, (select name from tenants where users.tenant_id = tenants.id) as tenant_nome FROM users WHERE id = :user_id");
-			$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-			$stmt->execute();
-			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+			$user = (new User)->getUserById($user_id);
 
 			if (!$user) {
 				$_SESSION['msg'] = "<p class='container mt-3 alert alert-success'>Cadastro efetuado com sucesso. Faça o login!</p>";
@@ -115,30 +90,15 @@ class authController extends controller
 			$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 			$password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8'); // Alternativa segura
 
-			// Verificar se o usuário existe no banco
-			$stmt = $this->db->prepare("SELECT id as user_id, tenant_id, name, email, role, password, (select name from tenants where users.tenant_id = tenants.id) as tenant_nome FROM users WHERE email = :email LIMIT 1");
-			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-			$stmt->execute();
-			$user = $stmt->fetch(PDO::FETCH_ASSOC);
+			$user = (new User)->authentication($email, $password);
 
-			if (!$user || !password_verify($password, $user['password'])) {
+			if (!$user) {
 				$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Usuário ou senha incorretos!</p>";
 				header("Location: " . BASE_URL . "auth/login");
 				exit;
 			}
 
-			// 🔥 Verificar se a senha precisa ser re-hashada
-			if (password_needs_rehash($user['password'], PASSWORD_DEFAULT)) {
-				$newHash = password_hash($password, PASSWORD_DEFAULT);
-
-				$updateStmt = $this->db->prepare("UPDATE users SET password = :password WHERE id = :id");
-				$updateStmt->bindValue(":password", $newHash, PDO::PARAM_STR);
-				$updateStmt->bindValue(":id", $user['id'], PDO::PARAM_INT);
-				$updateStmt->execute();
-			}
-
 			$_SESSION['user'] = $user;
-			unset($_SESSION['user']['password']);
 			header("Location: " . BASE_URL . "home");
 			exit;
 		}
