@@ -28,9 +28,16 @@ class subscriptionController extends controller
 		}
 
 		$dados['subscription'] = $subscription;
+		$dados['payments'] = (new Payment)->getPaymentsBy($tenant_id);
 
 		$this->loadTemplate('subscription', $dados);
 	}
+
+	public function view() {}
+
+	public function edit() {}
+
+	public function delete() {}
 
 	public function plans()
 	{
