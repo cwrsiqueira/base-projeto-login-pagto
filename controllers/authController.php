@@ -52,21 +52,6 @@ class authController extends controller
 			// Cadastrar usuário no banco
 			$user_id = (new User)->addUser($tenant_id, $name, $email, $hashPassword, $role);
 
-			// Cadastrar assinatura Teste por 7 dias grátis
-			$plan = 'Teste 7 dias';
-			$price = '0.00';
-			$currency = 'BRL';
-			$status = 'active';
-			$renew_at = (new DateTime())->modify('+7 days')->format('Y-m-d 23:59:59');
-
-			$subscription = (new Subscription)->addSubscription($tenant_id, $plan, $price, $currency, $status, $renew_at);
-
-			if (!$subscription) {
-				$_SESSION['msg'] = "<p class='container mt-3 alert alert-danger'>Erro ao liberar o acesso de teste. Contacte o suporte. Obrigado!</p>";
-				header("Location: " . BASE_URL . "auth/signup");
-				exit;
-			}
-
 			// Buscar dados do usuário cadastrado
 			$user = (new User)->getUserById($user_id);
 
@@ -77,7 +62,7 @@ class authController extends controller
 			}
 
 			$_SESSION['user'] = $user;
-			header("Location: " . BASE_URL . "home");
+			header("Location: " . BASE_URL . "content");
 			exit;
 		}
 
@@ -99,7 +84,7 @@ class authController extends controller
 			}
 
 			$_SESSION['user'] = $user;
-			header("Location: " . BASE_URL . "home");
+			header("Location: " . BASE_URL . "content");
 			exit;
 		}
 
@@ -124,7 +109,7 @@ class authController extends controller
 	{
 		session_start();
 		unset($_SESSION['user']);
-		header("Location: " . BASE_URL . "home");
+		header("Location: " . BASE_URL . "content");
 		exit;
 	}
 }

@@ -6,7 +6,7 @@ class profileController extends controller
 	public function __construct()
 	{
 		if (!(new User)->isLogged()) {
-			header("Location: " . BASE_URL . "auth");
+			header("Location: " . BASE_URL . "home");
 			exit;
 		}
 

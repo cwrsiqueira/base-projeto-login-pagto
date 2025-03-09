@@ -1,5 +1,5 @@
 <?php
-switch ($subscription['status']) {
+switch ($subscription['status'] ?? '') {
     case 'active':
         $status_class = "badge badge-success";
         break;

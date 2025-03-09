@@ -51,7 +51,7 @@
                 <li class="nav-item"><a class="nav-link" href="#como-funciona">Como funciona?</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#testemunhos">Testemunhos</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="#preco">Preço</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-primary text-white" href="#">Teste por 7 dias grátis</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-primary text-white" href="<?= BASE_URL ?>auth/signup">Teste por 7 dias grátis</a></li>
             </ul>
         </div>
     </nav>
@@ -61,8 +61,8 @@
             <h2 class="font-weight-bold mr-3" style="font-size: 36px;">Seu filho aprendendo inglês</h2>
             <h2 id="dynamic-title" class="font-weight-bold text-primary" style="font-size: 36px;">NATURALMENTE</h2>
         </div>
-        <a href="#" class="btn btn-primary btn-lg my-3">Teste por 7 dias grátis</a>
-        <p><a href="#" class="text-primary">Faça o login</a></p>
+        <a href="<?= BASE_URL ?>auth/signup" class="btn btn-primary btn-lg my-3">Teste por 7 dias grátis</a>
+        <p><a href="<?= BASE_URL ?>auth/login" class="text-primary">Faça o login</a></p>
         <div class="embed-responsive embed-responsive-16by9 mt-3">
             <video class="embed-responsive-item" controls poster="<?= BASE_URL ?>assets/images/thumbnail.png">
                 <source src="<?= BASE_URL ?>assets/videos/hero.mp4" type="video/mp4">
@@ -77,7 +77,7 @@
     <header class="bg-primary text-white text-center py-5">
         <h1>Dulang Web</h1>
         <p>Aprendizado natural e divertido de inglês para crianças</p>
-        <a href="#plano" class="btn btn-light btn-lg">Teste por 7 dias grátis</a>
+        <a href="<?= BASE_URL ?>auth/signup" class="btn btn-light btn-lg">Teste por 7 dias grátis</a>
     </header>
 
     <section class="container my-5" id="por-que-o-dulang">
@@ -267,16 +267,18 @@
                     <p class="text-muted">Cobrado anualmente R$ 199,00/ano</p>
                     <p class="text-success font-weight-bold">Economize 2 meses!</p>
 
-                    <ul class="list-unstyled my-3">
-                        <li><i class="fas fa-check-circle text-success"></i> Teste por 7 dias grátis</li>
-                        <li><i class="fas fa-check-circle text-success"></i> Acesso ilimitado a vídeos educativos</li>
-                        <li><i class="fas fa-check-circle text-success"></i> Conteúdo 100% seguro para crianças</li>
-                        <li><i class="fas fa-check-circle text-success"></i> Aprendizado natural e divertido</li>
-                        <li><i class="fas fa-check-circle text-success"></i> Funciona em qualquer dispositivo</li>
-                        <li><i class="fas fa-check-circle text-success"></i> Sem anúncios</li>
-                    </ul>
+                    <div class="d-flex justify-content-center">
+                        <ul class="list-unstyled my-3 text-left">
+                            <li><i class="fas fa-check-circle text-success"></i> Teste por 7 dias grátis</li>
+                            <li><i class="fas fa-check-circle text-success"></i> Acesso ilimitado a vídeos educativos</li>
+                            <li><i class="fas fa-check-circle text-success"></i> Conteúdo 100% seguro para crianças</li>
+                            <li><i class="fas fa-check-circle text-success"></i> Aprendizado natural e divertido</li>
+                            <li><i class="fas fa-check-circle text-success"></i> Funciona em qualquer dispositivo</li>
+                            <li><i class="fas fa-check-circle text-success"></i> Sem anúncios</li>
+                        </ul>
+                    </div>
 
-                    <a href="#assinar" class="btn btn-primary btn-lg">Teste por 7 dias grátis</a>
+                    <a href="<?= BASE_URL ?>auth/signup" class="btn btn-primary btn-lg">Teste por 7 dias grátis</a>
                     <p class="mt-3 text-muted">Cancelamento fácil a qualquer momento.</p>
                 </div>
             </div>
@@ -287,7 +289,7 @@
     <section id="plano" class="bg-primary text-white text-center py-5">
         <h2>Assine Agora</h2>
         <p class="lead">Garanta acesso ilimitado ao Dulang Web!</p>
-        <a href="#" class="btn btn-light btn-lg">Teste por 7 dias grátis</a>
+        <a href="<?= BASE_URL ?>auth/signup" class="btn btn-light btn-lg">Teste por 7 dias grátis</a>
     </section>
 
     <footer class="bg-dark text-white text-center py-3">

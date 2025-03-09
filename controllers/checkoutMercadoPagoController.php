@@ -6,27 +6,22 @@ class checkoutMercadoPagoController extends controller
     public function __construct()
     {
         if (!(new User)->isLogged()) {
-            header("Location: " . BASE_URL . "auth");
+            header("Location: " . BASE_URL . "home");
             exit;
         }
 
         $this->user = $_SESSION['user'];
     }
 
-    public function index(string $plan)
+    public function index(string $plan = '')
     {
         $dados = [
             'user' => $this->user,
             'title' => 'Checkout'
         ];
 
-        if ($plan === 'planoanual') {
-            $dados['price'] = 119.90;
-            $dados['plan'] = 'Plano Anual';
-        } else {
-            $dados['price'] = 179.60;
-            $dados['plan'] = 'Plano Vitalício';
-        }
+        $dados['price'] = 199.00;
+        $dados['plan'] = 'Plano Dulang Web';
 
         $this->loadTemplate('checkoutMercadoPago', $dados);
     }

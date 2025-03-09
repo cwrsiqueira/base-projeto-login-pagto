@@ -6,7 +6,7 @@ class contentController extends controller
 	public function __construct()
 	{
 		if (!(new User)->isLogged()) {
-			header("Location: " . BASE_URL . "auth");
+			header("Location: " . BASE_URL . "home");
 			exit;
 		}
 
@@ -17,6 +17,12 @@ class contentController extends controller
 			header("Location: " . BASE_URL . "subscription");
 			exit;
 		}
+	}
+
+	public function index()
+	{
+		$dados = ["page" => "Conteúdo 1"];
+		$this->loadTemplate('content/first', $dados);
 	}
 
 	public function first()

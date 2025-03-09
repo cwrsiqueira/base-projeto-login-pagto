@@ -14,8 +14,8 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-lg">
             <div class="text-center">
-                <img src="<?= BASE_URL ?>assets/images/logo.png" alt="Logo" class="logo mb-3" width="150">
-                <h4 class="mb-3">Projeto Base<br>Login</h4>
+                <img src="<?= BASE_URL ?>assets/images/logo.png" alt="Logo" class="logo mb-3" width="80" height="80">
+                <h4 class="mb-3">Login</h4>
             </div>
             <?php
             if (!empty($_SESSION['msg'])) {
