@@ -22,24 +22,12 @@ class contentController extends controller
 	public function index()
 	{
 		$dados = ["page" => "Conteúdo 1"];
-		$this->loadTemplate('content/first', $dados);
+		$this->loadTemplate('content/feed', $dados);
 	}
 
-	public function first()
+	public function single()
 	{
 		$dados = ["page" => "Conteúdo 1"];
-		$this->loadTemplate('content/first', $dados);
-	}
-
-	public function second()
-	{
-		$dados = ["page" => "Conteúdo 2"];
-		$this->loadTemplate('content/second', $dados);
-	}
-
-	public function third()
-	{
-		$dados = ["page" => "Conteúdo 3"];
-		$this->loadTemplate('content/third', $dados);
+		$this->loadTemplate('content/single', $dados);
 	}
 }
