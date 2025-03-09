@@ -3,15 +3,15 @@ class homeController extends controller
 {
 	public function __construct()
 	{
-		if (!(new User)->isLogged()) {
-			header("Location: " . BASE_URL . "auth");
-			exit;
-		}
+		// if (!(new User)->isLogged()) {
+		// 	header("Location: " . BASE_URL . "auth");
+		// 	exit;
+		// }
 	}
 
 	public function index()
 	{
 		$dados = ["page" => "Home"];
-		$this->loadTemplate('home', $dados);
+		$this->loadView('home', $dados);
 	}
 }

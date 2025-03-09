@@ -52,7 +52,7 @@ class authController extends controller
 			// Cadastrar usuário no banco
 			$user_id = (new User)->addUser($tenant_id, $name, $email, $hashPassword, $role);
 
-			// Cadastrar assinatura teste 7 dias grátis
+			// Cadastrar assinatura Teste por 7 dias grátis
 			$plan = 'Teste 7 dias';
 			$price = '0.00';
 			$currency = 'BRL';
